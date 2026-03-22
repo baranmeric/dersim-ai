@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('@org/chat').then(m => m.Home),
+    loadComponent: () => import('@org/chat').then(m => m.Chat),
   },
   {
     path: 'authenticate',
@@ -12,6 +12,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () => import('@org/chat').then(m => m.Home),
+    loadComponent: () => import('@org/chat').then(m => m.Chat),
   },
 ];

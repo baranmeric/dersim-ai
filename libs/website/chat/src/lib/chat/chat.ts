@@ -20,16 +20,16 @@ import { ChatHttpService } from '../chat-http.service';
 import { SessionHttpService } from '../session-http.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-chat',
   standalone: true,
   imports: [
     CommonModule, FormsModule, MatIconModule, MessageBubble, MatSidenavModule,
     MatButtonModule, SessionChip, ChatInputComponent, SidenavButton,
   ],
-  templateUrl: './home.html',
-  styleUrls: ['./home.scss'],
+  templateUrl: './chat.html',
+  styleUrls: ['./chat.scss'],
 })
-export class Home implements OnInit {
+export class Chat implements OnInit {
 
   // ── Services ──────────────────────────────────────────────────────────────────────
   private readonly layoutService = inject(LayoutService);

@@ -21,3 +21,21 @@
 - The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
 
 <!-- nx configuration end-->
+
+# Library Structure Convention
+
+Feature libs (`auth`, `chat`, etc.) follow this folder structure inside `src/lib/`:
+
+```
+src/lib/
+  pages/        ← routed page components
+  components/   ← dumb/presentational components (when they exist)
+  services/     ← services and http clients
+  state/        ← NgRx actions, reducers, selectors
+  guards/       ← route guards (when they exist)
+```
+
+Rules:
+- Only create a folder when there are actual files for it — no empty folders
+- `core/` and `ui/` are flat (all services or all components) and don't need subfolders
+- `shared/` is organized by type (enum, model, error, helper) and stays that way
