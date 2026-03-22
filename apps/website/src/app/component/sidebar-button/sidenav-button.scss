@@ -1,0 +1,42 @@
+@use "theme-colors" as *;
+
+.sidenav-button {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: none;
+    border: none;
+    border-radius: 0.6rem;
+    color: $text;
+    cursor: pointer;
+    font-size: 1.45rem;
+    font-family: inherit;
+    text-align: left;
+    transition: background 0.15s ease;
+
+    mat-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        color: $muted;
+        flex-shrink: 0;
+    }
+
+    span {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+    }
+
+    &:hover {
+        background: $background-light;
+
+        mat-icon {
+            color: $text;
+        }
+    }
+}

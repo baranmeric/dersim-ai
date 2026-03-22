@@ -1,0 +1,32 @@
+@use 'sass:map';
+
+/*
+  In accordance with https://mui.com/material-ui/customization/breakpoints/
+  As angulars breakpoint service uses the same sizes
+  -1 such that min-width and max-width emulate angular breakpoint service behaviour
+*/
+$breakpoints: (
+  'sm': 599px,
+  'md': 959px,
+  'lg': 1279px
+);
+
+@mixin respond-above($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No value found for breakpoint: #{$breakpoint}";
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No value found for breakpoint: #{$breakpoint}";
+  }
+}

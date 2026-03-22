@@ -1,0 +1,11 @@
+<div class="base-dialog">
+    <div class="base-dialog__header">
+        <h3 class="base-dialog__title">{{ title() }}</h3>
+        <button class="base-dialog__close" (click)="closed.emit()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="base-dialog__body">
+        <ng-content></ng-content>
+    </div>
+</div>

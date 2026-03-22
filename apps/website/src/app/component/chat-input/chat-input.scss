@@ -1,0 +1,124 @@
+@use "theme-colors" as *;
+@use "animations" as *;
+@use "breakpoints" as *;
+
+
+.input-container {
+    position: relative;
+    background: $background-2;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+
+    &:hover {
+        border-color: rgba($tertiary, 0.3);
+    }
+
+    &.focused {
+        border-color: rgba($tertiary, 0.75);
+    }
+}
+
+.textarea-wrapper {
+    padding: 16px 16px 0;
+}
+
+.chat-textarea {
+    width: 100%;
+    min-height: 28px;
+    max-height: 240px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: #e8e8f0;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    caret-color: $tertiary;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.22);
+        font-style: italic;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba($tertiary-2, 0.3) transparent;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba($tertiary-2, 0.3);
+        border-radius: 2px;
+    }
+}
+
+.input-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px 12px;
+}
+
+.hint-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.18);
+    letter-spacing: 0.02em;
+    user-select: none;
+}
+
+.hint-key {
+    color: rgba($tertiary-text, 0.5);
+    font-weight: 500;
+}
+
+.send-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.2);
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+    cursor: default;
+
+    &.active {
+        background: $tertiary;
+        color: #000;
+        cursor: pointer;
+
+        mat-icon {
+            color: #000;
+        }
+
+        &:hover {
+            background: $tertiary-light;
+        }
+    }
+
+    mat-icon {
+        height: 1.8rem;
+        width: 1.8rem;
+        font-size: 1.8rem;
+        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+}

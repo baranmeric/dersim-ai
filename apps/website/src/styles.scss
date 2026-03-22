@@ -1,1 +1,271 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use '_theme-colors' as *;
+@use 'animations' as *;
+@use 'breakpoints' as *;
+@use 'sass:map';
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+    @include mat.theme((color: (primary: $primary-palette,
+                tertiary: $tertiary-palette,
+            ),
+            typography: Roboto,
+            density: 0,
+        ));
+}
+
+html,
+body {
+    background-color: $background;
+}
+
+body {
+    color-scheme: dark;
+
+    // Reset the user agent margin.
+    margin: 0;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Roboto Serif', serif;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100%;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+}
+
+hr {
+    opacity: 0.25;
+    color: $background;
+    margin: 4rem 0;
+}
+
+button {
+    border: none;
+}
+
+.material-symbols-outlined {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.light-shadow {
+    box-shadow: 0px 0px 20px #262626;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2.5rem;
+}
+
+.sans-serif {
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+button {
+    mat-icon {
+        color: $tertiary-light;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Inner html styles for message content
+   Needs to be in global styles file due to ng encapulation
+   -> no effect in component style sheet
+───────────────────────────────────────────────────────────── */
+.inner-html {
+    font-size: 1.6rem;
+
+    &.user {
+        p {
+            margin: 0;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $highlighted;
+        margin: 3rem 0 0 0;
+    }
+
+    p {
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    ol,
+    ul {
+        margin-left: 2rem;
+
+        @include respond-above('sm') {
+            margin-left: 3rem;
+        }
+    }
+
+    li {
+        margin: 1.5rem 0;
+    }
+
+    pre {
+        background: $background-2;
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    code {
+        background: $background-2;
+        border-radius: 0.5rem;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        color: #fff;
+        padding: 0.4em;
+        font-size: 0.95em;
+        white-space: break-spaces;
+    }
+
+    table {
+        font-size: 1.4rem;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 0.6rem 0.75rem;
+        text-align: left;
+    }
+
+    tr {
+        margin: 2rem 0;
+    }
+
+    thead th {
+        font-weight: 600;
+        border-bottom: 1px solid $background-light;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid $background-light;
+    }
+
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    td {
+        margin: 0.5rem 0;
+    }
+
+    blockquote {
+        margin: 2rem 0;
+        padding: 2rem;
+        border-radius: 1rem;
+        font-style: italic;
+        background: $background-1;
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    em {
+        font-style: italic;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Dialog / bottom sheet panel overrides
+───────────────────────────────────────────────────────────── */
+.cdk-overlay-backdrop {
+    cursor: default;
+}
+
+.app-dialog-panel .mat-mdc-dialog-surface {
+    background: #111111;
+    cursor: default;
+}
+
+.app-bottom-sheet-panel .mat-bottom-sheet-container {
+    background: #111111;
+    border-radius: 2rem 2rem 0 0;
+    padding: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Snackbar panel overrides
+───────────────────────────────────────────────────────────── */
+.snackbar-success,
+.snackbar-error,
+.snackbar-info {
+    padding: 3rem;
+
+    .mdc-snackbar__surface {
+        background: $background-light !important;
+    }
+
+    .mdc-snackbar__label {
+        color: $text !important;
+        font-size: 1.6rem !important;
+        line-height: 2rem !important;
+    }
+
+    .mat-mdc-snack-bar-action .mdc-button__label {
+        color: $muted !important;
+    }
+}
+
+.snackbar-success .mdc-snackbar__surface {
+    border-left: 3px solid $primary;
+}
+
+.snackbar-error .mdc-snackbar__surface {
+    border-left: 3px solid $error;
+}
+
+.snackbar-info .mdc-snackbar__surface {
+    border-left: 3px solid $tertiary;
+}

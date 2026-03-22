@@ -1,0 +1,133 @@
+<!-- Background particles -->
+<div class="particles" animate.enter="fade-in-slow" aria-hidden="true">
+  @for (p of particles(); track $index) {
+  <span class="particle" [style.top.%]="p.top" [style.left.%]="p.left" [style.width.px]="p.size"
+    [style.height.px]="p.size"></span>
+  }
+</div>
+
+<!-- Left panel with title & description -->
+<section class="auth-left" animate.enter="fade-slide-in-left" aria-label="App introduction">
+  <div class="auth-left__inner">
+    <h1 class="auth-app-title">Welcome to <span class="auth-app-name">DersimAi</span></h1>
+    <p class="auth-left__description">
+      A web app with Angular on the frontend and Node.js on the backend that connects
+      to the Qwen3 AI model through Together AI, using custom prompts to enhance responses.
+    </p>
+  </div>
+</section>
+
+<!-- Right panel with form -->
+<section class="auth-right" aria-label="Authentication">
+  <!-- App header only visible on sm -->
+  <div class="auth-mobile__header" animate.enter="fade-slide-in-left">
+    <img class="auth-mobile__app-logo" src="app-logo.svg" alt="App Logo">
+    <h1 class="auth-app-title">Welcome to <span class="auth-app-name">DersimAi</span></h1>
+  </div>
+
+  <!-- ── REGISTER ─────────────────────────────────────────── -->
+  @if (isRegister()) {
+  <div class="auth-right__inner" animate.enter="fade-in-slow">
+    <h2 class="auth-right__heading">Let's create an account</h2>
+
+    <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="onRegister()" novalidate>
+
+      <!-- Username -->
+      <div class="form-field">
+        <input class="form-field__input" [class.form-field__input--error]="
+                hasError(registerForm, 'username', 'required') || responseConflict()
+              " formControlName="username" placeholder="Username" autocomplete="username" aria-label="Username" />
+        @if (hasError(registerForm, 'username', 'required')) {
+        <span class="form-field__error">Username is required</span>
+        } @else if (responseConflict()) {
+        <span class="form-field__error">Account with username already exists</span>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="form-field">
+        <input class="form-field__input" [class.form-field__input--error]="
+                hasError(registerForm, 'password', 'required') ||
+                hasError(registerForm, 'password', 'minlength')
+              " formControlName="password" placeholder="Password" type="password" autocomplete="new-password"
+          aria-label="Password" />
+        @if (hasError(registerForm, 'password', 'required')) {
+        <span class="form-field__error">Password is required</span>
+        } @else if (hasError(registerForm, 'password', 'minlength')) {
+        <span class="form-field__error">Password has to be at least 6 characters long</span>
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-field">
+        <input class="form-field__input" [class.form-field__input--error]="
+                hasPasswordMismatch() || responseInternal()
+              " formControlName="confirmPassword" placeholder="Confirm password" type="password"
+          autocomplete="new-password" aria-label="Confirm password" />
+        @if (hasPasswordMismatch()) {
+        <span class="form-field__error">Passwords not identical</span>
+        } @else if (responseInternal()) {
+        <span class="form-field__error">Something went wrong</span>
+        }
+      </div>
+      <app-button (onClick)="onRegister()" [title]="loading() ? 'Loading...' : 'Create account'" [loading]="loading()"
+        iconName="person_add" flexDirection="row-reverse" slideDirection="right"></app-button>
+    </form>
+
+    <p class="auth-switch">
+      Already have an account?
+      <button class="auth-switch__link" type="button" (click)="switchMode()">
+        Sign in
+      </button>
+    </p>
+  </div>
+  }
+
+  <!-- ── LOGIN ──────────────────────────────────────────────── -->
+  @else {
+  <div class="auth-right__inner" animate.enter="fade-in-slow">
+
+    <h2 class="auth-right__heading">Good to see you</h2>
+
+    <form class="auth-form" [formGroup]="loginForm" novalidate>
+
+      <!-- Username -->
+      <div class="form-field">
+        <input class="form-field__input" [class.form-field__input--error]="hasError(loginForm, 'username', 'required')"
+          formControlName="username" placeholder="Username" autocomplete="username" aria-label="Username" />
+        @if (hasError(loginForm, 'username', 'required')) {
+        <span class="form-field__error">Username is required</span>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="form-field">
+        <input class="form-field__input" [class.form-field__input--error]="
+                hasError(loginForm, 'password', 'required') ||
+                hasError(loginForm, 'password', 'minlength') ||
+                responseUnauthorized()
+              " formControlName="password" placeholder="Password" type="password" autocomplete="current-password"
+          aria-label="Password" />
+        @if (hasError(loginForm, 'password', 'required')) {
+        <span class="form-field__error">Password is required</span>
+        } @else if (hasError(loginForm, 'password', 'minlength')) {
+        <span class="form-field__error">Password has to be at least 6 characters long</span>
+        } @else if (responseUnauthorized()) {
+        <span class="form-field__error">Username and password do not match</span>
+        } @else if (responseInternal()) {
+        <span class="form-field__error">Something went wrong</span>
+        }
+      </div>
+      <app-button (onClick)="onLogin()" [title]="loading() ? 'Loading...' : 'Sign in'" [loading]="loading()"
+        iconName="arrow_forward" flexDirection="row-reverse" slideDirection="right"></app-button>
+    </form>
+
+    <p class="auth-switch">
+      Or
+      <button class="auth-switch__link" type="button" (click)="switchMode()">
+        create an account
+      </button>
+    </p>
+  </div>
+  }
+</section>

@@ -1,0 +1,42 @@
+@use "theme-colors" as *;
+
+.base-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2.4rem;
+    color: $text;
+    min-width: 32rem;
+}
+
+.base-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.base-dialog__title {
+    color: $highlighted;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.base-dialog__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem;
+    border-radius: 50%;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: $text;
+    }
+}

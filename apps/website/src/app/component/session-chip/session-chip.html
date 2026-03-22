@@ -1,0 +1,11 @@
+@if(session() != null) {
+<div class="session-chip__wrapper" [ngClass]="{'selected': selected()}" (click)="onClick.emit(session()!.id)">
+    <div class="session-chip__content">
+        <p class="session-title">{{ displayTitle() }}</p>
+        <small class="session-date">{{ session()!.updatedAt | date:'HH:mm, dd MMMM' }}</small>
+    </div>
+    <button class="session-delete-btn" (click)="$event.stopPropagation(); onDelete.emit(session()!.id)">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+}

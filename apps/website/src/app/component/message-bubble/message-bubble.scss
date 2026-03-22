@@ -1,0 +1,33 @@
+@use "theme-colors" as *;
+@use "animations" as *;
+@use "breakpoints" as *;
+
+/* ─────────────────────────────────────────────────────────────
+   Message bubble
+───────────────────────────────────────────────────────────── */
+
+:host(.full-width) {
+    width: 100%;
+}
+
+.message-bubble {
+  position: relative;
+  line-height: 1.65;
+  color: $text;
+
+  // User
+  &.user {
+    background: $background-light;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+  }
+
+  // Assistant
+  &.assistant {
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    padding: 12px 0 20px;
+    border-radius: 0;
+  }
+}

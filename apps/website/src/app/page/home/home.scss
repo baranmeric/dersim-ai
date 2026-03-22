@@ -1,0 +1,172 @@
+@use "theme-colors" as *;
+@use "animations" as *;
+@use "breakpoints" as *;
+
+/* ─────────────────────────────────────────────────────────────
+   Host layout + General classes
+───────────────────────────────────────────────────────────── */
+:host {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.toggle-sidebar-button {
+    background: none;
+    cursor: pointer;
+    border-radius: 10rem;
+    transition: background 100ms ease-in;
+    padding: 1rem;
+    z-index: 2;
+
+    mat-icon {
+        font-size: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    &:hover {
+        background-color: $background;
+    }
+
+    &.close {
+        margin-left: auto;
+    }
+
+    &.open {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    &.show-background {
+        background-color: $background-light;
+        box-shadow: 4px 4px 20px rgba($color: #000000, $alpha: 0.5);
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Sidenav with sessions
+───────────────────────────────────────────────────────────── */
+.home-drawer__container {
+    background: transparent;
+}
+
+.sidenav {
+    z-index: 5 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 28rem;
+    background-color: $background-1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: $text;
+
+    @include respond-below('sm') {
+        width: 100%;
+    }
+}
+
+.sidenav-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    .app-logo {
+        height: 3rem;
+        width: 3rem;
+    }
+}
+
+.sidenav-buttons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.4rem 0;
+}
+
+.sidenav-session-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 2rem;
+    gap: 0.4rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Main content
+───────────────────────────────────────────────────────────── */
+.home-content {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.chat-input__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 90%;
+    max-width: 75rem;
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+
+    // Animate moving wrapper down
+    top: calc(100% - 14rem);
+    transform: translateX(-50%);
+    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.center {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .welcome-title {
+        position: absolute;
+        bottom: calc(100% + 3rem);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        color: $tertiary-text;
+        font-size: 2.5rem;
+
+        @include respond-above('md') {
+            font-size: 3.5rem;
+        }
+    }
+}
+
+// ── Messages ────────────────────────────────────────────────────────────────────
+.messages-list {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    align-items: flex-end;
+}
+
+.messages-list__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    margin-top: 6rem;
+    margin-bottom: 30rem;
+
+    @include respond-above('sm') {
+        padding: 3rem;
+        margin-top: 3rem;
+    }
+}

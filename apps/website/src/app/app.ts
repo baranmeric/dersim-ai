@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { UserService } from './service/domain/user.service';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
   selector: 'app-root',
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrl: './app.scss'
 })
-export class App {
-  protected title = 'website';
+export class App implements OnInit {
+
+  // ── Services ──────────────────────────────────────────────────────────────────────
+  private readonly userService = inject(UserService);
+
+  // ── Signals ──────────────────────────────────────────────────────────────────────
+  protected readonly loadingUser = signal(true);
+
+  // ── Lifecycle ──────────────────────────────────────────────────────────────────────
+  async ngOnInit(): Promise<void> {
+    this.loadingUser.set(true);
+    await this.userService.refreshUser();
+    this.loadingUser.set(false);
+  }
 }

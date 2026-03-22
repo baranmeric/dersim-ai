@@ -5,6 +5,11 @@
   "prefix": "app",
   "sourceRoot": "apps/website/src",
   "tags": [],
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -20,20 +25,29 @@
             "input": "apps/website/public"
           }
         ],
-        "styles": ["apps/website/src/styles.scss"]
+        "styles": ["apps/website/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/website/src/style"]
+        }
       },
       "configurations": {
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/website/src/environment/environment.dev.ts",
+              "with": "apps/website/src/environment/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
+              "maximumWarning": "8kB",
+              "maximumError": "16kB"
             }
           ],
           "outputHashing": "all"

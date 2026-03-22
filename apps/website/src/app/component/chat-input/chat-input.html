@@ -1,0 +1,34 @@
+<div class="chat-input-wrapper">
+  <div class="input-container" [class.focused]="isFocused()">
+
+    <div class="textarea-wrapper">
+      <textarea
+        #textareaRef
+        class="chat-textarea"
+        [placeholder]="placeholder()"
+        [formControl]="userInput"
+        (keydown)="onKeyDown($event)"
+        (focus)="isFocused.set(true)"
+        (blur)="isFocused.set(false)"
+        rows="1"
+      ></textarea>
+    </div>
+
+    <div class="input-footer">
+      <div class="hint-text">
+        <span class="hint-key">Shift + Enter</span> for new line
+      </div>
+
+      <button
+        class="send-button"
+        [class.active]="canSend()"
+        [disabled]="!canSend()"
+        (click)="sendMessage()"
+        aria-label="Send message"
+      >
+        <mat-icon>north</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>

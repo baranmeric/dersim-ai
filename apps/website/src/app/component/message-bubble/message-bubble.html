@@ -1,0 +1,12 @@
+<div class="message-bubble" [ngClass]="{
+        'user': isUser(),
+        'assistant': isAssistant()
+  }">
+
+  @if (renderedContent(); as content) {
+    <div class="message-bubble__content inner-html" animate.enter="fade-in" [innerHTML]="content"></div>
+  }
+  @else if (placeholderContent(); as placeholder) {
+    <div class="message-bubble__content inner-html" animate.enter="fade-in">{{placeholder}}</div>
+  }
+</div>

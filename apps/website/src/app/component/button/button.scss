@@ -1,0 +1,26 @@
+@use '_animations' as *;
+@use '_theme-colors' as *;
+
+.button {
+    transition: transform background-color 150ms ease-in;
+}
+
+.button:disabled {
+    background-color: $primary-2;
+}
+
+.button-content__wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    gap: 1rem;
+}
+
+.button-title {
+    font-weight: 600;
+}
+
+.button-icon {
+    width: 1em;
+    height: 1em;
+}

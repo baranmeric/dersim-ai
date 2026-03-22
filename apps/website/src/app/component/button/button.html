@@ -1,0 +1,26 @@
+<!-- Customized Mat Button -->
+<button
+    class="button"
+    [ngClass]="{
+    'slide-up-on-hover': slideDirection() === ButtonSlideDirection.Up,
+    'slide-right-on-hover': slideDirection() === ButtonSlideDirection.Right,
+    'slide-left-on-hover': slideDirection() === ButtonSlideDirection.Left,
+    }" 
+    [ngStyle]="{'flex-direction': flexDirection()}" 
+    mat-fab extended
+    [disabled]="loading()"
+    (click)="onClick.emit()">
+    <!-- Button Content -->
+    <div class="button-content__wrapper" [ngStyle]="{'flex-direction': flexDirection()}">
+        @if (iconName() && !loading()) {
+            <mat-icon class="button-icon">
+                {{iconName()}}
+            </mat-icon>
+        } @else if (loading()) {
+            <mat-spinner diameter="25"></mat-spinner>
+        }
+        @if (title()) {
+            <p class="button-title">{{title()}}</p>
+        }
+    </div>
+</button>
