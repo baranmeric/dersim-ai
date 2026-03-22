@@ -9,10 +9,25 @@
     "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "jest.config.cts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
+  "exclude": ["jest.config.ts", "jest.config.cts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../../libs/shared"
+    },
+    {
+      "path": "../../libs/api/cache"
+    },
+    {
+      "path": "../../libs/api/session"
+    },
+    {
+      "path": "../../libs/api/chat"
+    },
+    {
+      "path": "../../libs/api/user"
+    },
+    {
+      "path": "../../libs/api/core"
+    }
   ]
 }

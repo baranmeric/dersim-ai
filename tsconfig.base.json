@@ -18,7 +18,12 @@
       "@dersim/ui": ["libs/website/ui/src/index.ts"],
       "@dersim/auth": ["libs/website/auth/src/index.ts"],
       "@dersim/chat": ["libs/website/chat/src/index.ts"],
-      "@dersim/store": ["libs/website/store/src/index.ts"]
+      "@dersim/store": ["libs/website/store/src/index.ts"],
+      "@dersim/api-core": ["libs/api/core/src/index.ts"],
+      "@dersim/api-user": ["libs/api/user/src/index.ts"],
+      "@dersim/api-session": ["libs/api/session/src/index.ts"],
+      "@dersim/api-chat": ["libs/api/chat/src/index.ts"],
+      "@dersim/api-cache": ["libs/api/cache/src/index.ts"]
     }
   }
 }

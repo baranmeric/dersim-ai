@@ -22,6 +22,29 @@
 
 <!-- nx configuration end-->
 
+# API library Structure Convention for libs/api
+
+Feature libs (`user`, `session`, `chat`, `cache`) follow this folder structure inside `src/lib/`:
+
+```
+src/lib/
+  schema/      ← Mongoose models and document interfaces
+  service/     ← business logic services (wrapped with createServiceProxy)
+  controller/  ← Express request handlers
+  router/      ← Express routers
+  helper/      ← domain-specific pure helpers
+  queue/       ← background queue processors (when they exist)
+  generator/   ← AI content generators (when they exist)
+```
+
+Rules:
+- `core/` is flat — logger, proxy, config, middleware, socket, error handler all at top level
+- Only create a folder when there are actual files for it — no empty folders
+- `config/` (db, redis, jwt verify) lives in `core/`
+- `generateToken` lives in `user/` since it depends on `IUser`
+- `http` response helper lives in `cache/` since it depends on `cacheService`
+- Lib dependency order: `core` → `user` → `session` → `chat`, `cache`
+
 # Website library Structure Convention for libs/website
 
 Feature libs (`auth`, `chat`, etc.) follow this folder structure inside `src/lib/`:
@@ -37,5 +60,9 @@ src/lib/
 
 Rules:
 - Only create a folder when there are actual files for it — no empty folders
-- `core/` and `ui/` are flat (all services or all components) and don't need subfolders
-- `shared/` is organized by type (enum, model, error, helper) and stays that way
+- Libs do not import libs, only shared libs can be imported
+- Shared libs:
+  - `core`: contains core services whoms scopes surpasses any domain, like environment or http service
+  - `shared`: dumb components with no business logic, like buttons or simple dialogs
+  - `state`: defines app state via ngrx store and store actions for cross domain communication
+

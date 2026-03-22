@@ -4,6 +4,27 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "include": ["src/**/*.ts", "../../libs/website/core/src/lib/animation.service.ts", "../../libs/website/core/src/lib/environment.service.ts", "../../libs/website/core/src/lib/layout.service.ts", "../../libs/website/core/src/lib/snackbar.service.ts", "../../libs/website/core/src/lib/socket.service.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": [
+    "src/**/*.ts",
+    "../../libs/website/core/src/lib/animation.service.ts",
+    "../../libs/website/core/src/lib/environment.service.ts",
+    "../../libs/website/core/src/lib/layout.service.ts",
+    "../../libs/website/core/src/lib/snackbar.service.ts",
+    "../../libs/website/core/src/lib/socket.service.ts"
+  ],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../../libs/website/chat"
+    },
+    {
+      "path": "../../libs/website/auth"
+    },
+    {
+      "path": "../../libs/website/store"
+    },
+    {
+      "path": "../../libs/website/core"
+    }
+  ]
 }
