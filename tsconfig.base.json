@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "importHelpers": true,
     "isolatedModules": true,
     "lib": ["es2022", "dom"],
@@ -10,6 +11,9 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2022"
+    "target": "es2022",
+    "paths": {
+      "@org/shared": ["libs/shared/src/index.ts"]
+    }
   }
 }
