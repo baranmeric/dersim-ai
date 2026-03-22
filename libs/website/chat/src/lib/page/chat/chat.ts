@@ -17,8 +17,8 @@ import { UserService } from '@org/auth';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { ChatHttpService } from '../../services/chat-http.service';
-import { SessionHttpService } from '../../services/session-http.service';
+import { ChatHttpService } from '../../service/chat-http.service';
+import { SessionHttpService } from '../../service/session-http.service';
 
 @Component({
   selector: 'app-chat',

@@ -1,3 +1,3 @@
-export * from './lib/services/chat-http.service';
-export * from './lib/services/session-http.service';
-export * from './lib/pages/chat/chat';
+export * from './lib/service/chat-http.service';
+export * from './lib/service/session-http.service';
+export * from './lib/page/chat/chat';

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { BaseDialog } from '../../components/base-dialog/base.dialog';
+import { BaseDialog } from '../../component/base-dialog/base.dialog';
 
 @Component({
   selector: 'app-sign-out-dialog',

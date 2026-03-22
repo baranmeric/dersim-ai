@@ -22,17 +22,17 @@
 
 <!-- nx configuration end-->
 
-# Library Structure Convention
+# Website library Structure Convention for libs/website
 
 Feature libs (`auth`, `chat`, etc.) follow this folder structure inside `src/lib/`:
 
 ```
 src/lib/
-  pages/        ← routed page components
-  components/   ← dumb/presentational components (when they exist)
-  services/     ← services and http clients
+  page/        ← routed page components
+  component/   ← dumb/presentational components (when they exist)
+  service/     ← services and http clients
   state/        ← NgRx actions, reducers, selectors
-  guards/       ← route guards (when they exist)
+  guard/       ← route guards (when they exist)
 ```
 
 Rules:
