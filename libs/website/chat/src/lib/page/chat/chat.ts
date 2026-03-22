@@ -6,14 +6,14 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { finalize } from 'rxjs';
-import { Router } from '@angular/router';
 import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@dersim/shared';
+import { UserAction } from '@dersim/store';
 import { SocketService, LayoutService, SnackbarService } from '@dersim/core';
 import {
   MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
 } from '@dersim/ui';
-import { UserService } from '@dersim/auth';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
@@ -39,8 +39,7 @@ export class Chat implements OnInit {
   private readonly sessionService = inject(SessionHttpService);
   private readonly socketService = inject(SocketService);
   private readonly snackbarService = inject(SnackbarService);
-  private readonly userService = inject(UserService);
-  private readonly router = inject(Router);
+  private readonly store = inject(Store);
 
   // ── Signals ──────────────────────────────────────────────────────────────────────
   protected isLoading = signal(false);
@@ -179,10 +178,9 @@ export class Chat implements OnInit {
 
   // Sidenav buttons
   protected onLogout(): void {
-    this.dialogService.open<SignOutDialog, boolean>(SignOutDialog).subscribe(async confirmed => {
+    this.dialogService.open<SignOutDialog, boolean>(SignOutDialog).subscribe(confirmed => {
       if (confirmed) {
-        await this.userService.logout();
-        this.router.navigate(['/authenticate']);
+        this.store.dispatch(UserAction.logout());
       }
     });
   }

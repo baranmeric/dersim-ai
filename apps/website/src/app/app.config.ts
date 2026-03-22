@@ -2,10 +2,12 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from
 import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
 import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ENV_CONFIG, errorInterceptor } from '@dersim/core';
-import { userReducer } from '@dersim/auth';
+import { userReducer } from '@dersim/store';
+import { UserEffect } from '@dersim/auth';
 import { environment } from '../environment/environment.dev';
 import { routes } from './app.routes';
 
@@ -17,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideStore({ user: userReducer }),
+    provideEffects([UserEffect]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

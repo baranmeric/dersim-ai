@@ -17,7 +17,8 @@
       "@dersim/core": ["libs/website/core/src/index.ts"],
       "@dersim/ui": ["libs/website/ui/src/index.ts"],
       "@dersim/auth": ["libs/website/auth/src/index.ts"],
-      "@dersim/chat": ["libs/website/chat/src/index.ts"]
+      "@dersim/chat": ["libs/website/chat/src/index.ts"],
+      "@dersim/store": ["libs/website/store/src/index.ts"]
     }
   }
 }

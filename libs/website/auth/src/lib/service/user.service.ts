@@ -3,8 +3,8 @@ import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IUserRequest } from '@dersim/shared';
 import { SocketService } from '@dersim/core';
+import { UserAction } from '@dersim/store';
 import { UserHttpService } from './user-http.service';
-import { UserAction } from '../state/user.action';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
