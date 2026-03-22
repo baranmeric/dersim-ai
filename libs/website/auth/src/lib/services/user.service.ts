@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { IUserRequest } from '@org/shared';
 import { SocketService } from '@org/core';
 import { UserHttpService } from './user-http.service';
-import { UserAction } from './user.action';
+import { UserAction } from '../state/user.action';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

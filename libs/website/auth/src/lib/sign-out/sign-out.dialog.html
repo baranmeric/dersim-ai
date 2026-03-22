@@ -1,9 +1,0 @@
-<app-base-dialog title="Sign out" (closed)="close()">
-    <p class="message">Are you sure you want to sign out?</p>
-    <div class="actions">
-        <button class="btn" (click)="close()" [disabled]="loading()">Cancel</button>
-        <button class="btn btn--danger" (click)="onConfirm()" [disabled]="loading()">
-            {{ loading() ? 'Signing out...' : 'Sign out' }}
-        </button>
-    </div>
-</app-base-dialog>

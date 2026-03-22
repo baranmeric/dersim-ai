@@ -7,17 +7,18 @@ import {
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@org/shared';
 import { SocketService, LayoutService, SnackbarService } from '@org/core';
 import {
-  MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService,
+  MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
 } from '@org/ui';
-import { SignOutDialog } from '@org/auth';
+import { UserService } from '@org/auth';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { ChatHttpService } from '../chat-http.service';
-import { SessionHttpService } from '../session-http.service';
+import { ChatHttpService } from '../../services/chat-http.service';
+import { SessionHttpService } from '../../services/session-http.service';
 
 @Component({
   selector: 'app-chat',
@@ -38,6 +39,8 @@ export class Chat implements OnInit {
   private readonly sessionService = inject(SessionHttpService);
   private readonly socketService = inject(SocketService);
   private readonly snackbarService = inject(SnackbarService);
+  private readonly userService = inject(UserService);
+  private readonly router = inject(Router);
 
   // ── Signals ──────────────────────────────────────────────────────────────────────
   protected isLoading = signal(false);
@@ -176,7 +179,12 @@ export class Chat implements OnInit {
 
   // Sidenav buttons
   protected onLogout(): void {
-    this.dialogService.open(SignOutDialog);
+    this.dialogService.open<SignOutDialog, boolean>(SignOutDialog).subscribe(async confirmed => {
+      if (confirmed) {
+        await this.userService.logout();
+        this.router.navigate(['/authenticate']);
+      }
+    });
   }
 
   protected onPreferences(): void {
