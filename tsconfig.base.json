@@ -15,7 +15,9 @@
     "paths": {
       "@org/shared": ["libs/shared/src/index.ts"],
       "@org/core": ["libs/website/core/src/index.ts"],
-      "@org/ui": ["libs/website/ui/src/index.ts"]
+      "@org/ui": ["libs/website/ui/src/index.ts"],
+      "@org/auth": ["libs/website/auth/src/index.ts"],
+      "@org/chat": ["libs/website/chat/src/index.ts"]
     }
   }
 }

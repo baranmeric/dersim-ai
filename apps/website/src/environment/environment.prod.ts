@@ -1,4 +1,4 @@
-import { IAppEnvironment } from './app-environment';
+import { IAppEnvironment } from '@org/core';
 
 export const environment: IAppEnvironment = {
   production: true,

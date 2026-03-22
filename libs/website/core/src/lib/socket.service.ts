@@ -1,7 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { NotificationType } from 'shared/enum/notificationType';
-import { SessionNotification } from 'shared/model/notification.model';
-import { ISessionListItem } from 'shared/model/session.model';
+import { NotificationType, SessionNotification, ISessionListItem } from '@org/shared';
 import { EnvironmentService } from './environment.service';
 
 @Injectable({ providedIn: 'root' })

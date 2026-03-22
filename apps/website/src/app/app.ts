@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from './service/domain/user.service';
+import { UserService } from '@org/auth';
 
 @Component({
   selector: 'app-root',
