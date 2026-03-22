@@ -1,0 +1,59 @@
+# --- Compiled Output & Dependencies ---
+node_modules/
+dist/
+build/
+out-tsc/
+tmp/
+.next/
+out/
+.angular/
+*.tsbuildinfo
+
+# --- Nx & Tooling ---
+.nx/cache/
+.nx/workspace-data/
+.nx/polygraph/
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+.claude/worktrees/
+.claude/settings.local.json
+
+# --- Environment & Secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- IDEs & Editors ---
+# General
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# VSCode (Keeping specific config files, ignoring the rest)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# --- Testing & Logs ---
+/coverage/
+npm-debug.log
+yarn-error.log
+testem.log
+/libpeerconnection.log
+/typings
+/.sass-cache
+/connect.lock
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
