@@ -36,7 +36,7 @@ export class UserService {
 
   async logout(): Promise<void> {
     await firstValueFrom(this.userHttpService.logout());
-    this.store.dispatch(UserAction.resetUser());
     this.socketService.disconnect();
+    this.store.dispatch(UserAction.resetUser());
   }
 }
