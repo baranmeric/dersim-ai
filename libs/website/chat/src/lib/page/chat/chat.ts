@@ -21,7 +21,7 @@ import { ChatHttpService } from '../../service/chat-http.service';
 import { SessionHttpService } from '../../service/session-http.service';
 
 @Component({
-  selector: 'app-chat',
+  selector: 'lib-chat',
   standalone: true,
   imports: [
     CommonModule, FormsModule, MatIconModule, MessageBubble, MatSidenavModule,

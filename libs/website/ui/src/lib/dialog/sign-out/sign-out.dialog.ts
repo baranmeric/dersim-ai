@@ -4,7 +4,7 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { BaseDialog } from '../../component/base-dialog/base.dialog';
 
 @Component({
-  selector: 'app-sign-out-dialog',
+  selector: 'lib-sign-out-dialog',
   standalone: true,
   imports: [BaseDialog],
   templateUrl: './sign-out.dialog.html',

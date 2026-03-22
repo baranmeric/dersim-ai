@@ -15,7 +15,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-chat-input',
+  selector: 'lib-chat-input',
   standalone: true,
   imports: [CommonModule, FormsModule, MatIcon, ReactiveFormsModule],
   templateUrl: './chat-input.html',

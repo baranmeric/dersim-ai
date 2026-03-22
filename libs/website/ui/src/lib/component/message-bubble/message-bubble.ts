@@ -14,7 +14,7 @@ import { IDisplayMessage, MessageRole } from '@org/shared';
 import { AnimationService } from '@org/core';
 
 @Component({
-  selector: 'app-message-bubble',
+  selector: 'lib-message-bubble',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './message-bubble.html',

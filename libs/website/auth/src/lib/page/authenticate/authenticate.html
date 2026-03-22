@@ -70,8 +70,8 @@
         <span class="form-field__error">Something went wrong</span>
         }
       </div>
-      <app-button (onClick)="onRegister()" [title]="loading() ? 'Loading...' : 'Create account'" [loading]="loading()"
-        iconName="person_add" flexDirection="row-reverse" slideDirection="right"></app-button>
+      <lib-button (onClick)="onRegister()" [title]="loading() ? 'Loading...' : 'Create account'" [loading]="loading()"
+        iconName="person_add" flexDirection="row-reverse" slideDirection="right"></lib-button>
     </form>
 
     <p class="auth-switch">
@@ -118,8 +118,8 @@
         <span class="form-field__error">Something went wrong</span>
         }
       </div>
-      <app-button (onClick)="onLogin()" [title]="loading() ? 'Loading...' : 'Sign in'" [loading]="loading()"
-        iconName="arrow_forward" flexDirection="row-reverse" slideDirection="right"></app-button>
+      <lib-button (onClick)="onLogin()" [title]="loading() ? 'Loading...' : 'Sign in'" [loading]="loading()"
+        iconName="arrow_forward" flexDirection="row-reverse" slideDirection="right"></lib-button>
     </form>
 
     <p class="auth-switch">

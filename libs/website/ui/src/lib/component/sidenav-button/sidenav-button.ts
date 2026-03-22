@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-sidenav-button',
+  selector: 'lib-sidenav-button',
   standalone: true,
   imports: [MatIcon],
   templateUrl: './sidenav-button.html',

@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-base-dialog',
+  selector: 'lib-base-dialog',
   standalone: true,
   imports: [MatIcon],
   templateUrl: './base.dialog.html',

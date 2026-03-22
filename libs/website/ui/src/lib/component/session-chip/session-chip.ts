@@ -5,7 +5,7 @@ import { ISessionListItem } from '@org/shared';
 import { AnimationService } from '@org/core';
 
 @Component({
-  selector: 'app-session-chip',
+  selector: 'lib-session-chip',
   imports: [DatePipe, NgClass, MatIconModule],
   templateUrl: './session-chip.html',
   styleUrl: './session-chip.scss',

@@ -14,20 +14,20 @@
         </div>
         <!-- Sidenav buttons -->
         <div class="sidenav-buttons-list">
-            <app-sidenav-button title="New chat" icon="edit_note" (onClick)="onNewChat()"></app-sidenav-button>
-            <app-sidenav-button title="Preferences" icon="settings" (onClick)="onPreferences()"></app-sidenav-button>
-            <app-sidenav-button title="Sign out" icon="logout" (onClick)="onLogout()"></app-sidenav-button>
+            <lib-sidenav-button title="New chat" icon="edit_note" (onClick)="onNewChat()"></lib-sidenav-button>
+            <lib-sidenav-button title="Preferences" icon="settings" (onClick)="onPreferences()"></lib-sidenav-button>
+            <lib-sidenav-button title="Sign out" icon="logout" (onClick)="onLogout()"></lib-sidenav-button>
         </div>
         <!-- Past sessions list -->
         <div class="sidenav-session-list">
             <h4>Used Recently</h4>
             @for(session of displaySessions(); track session.id) {
-            <app-session-chip
+            <lib-session-chip
                 [session]="session"
                 [selected]="session.id === currentSession()?._id"
                 (onClick)="onSessionClick($event)"
                 (onDelete)="onSessionDelete($event)">
-            </app-session-chip>
+            </lib-session-chip>
             }
         </div>
     </mat-drawer>
@@ -49,10 +49,10 @@
              @if(!messages().length) {
                 <h2 class="welcome-title" animate.enter="fade-in-slow" animate.leave="fade-out">What's on your mind?</h2>
              }
-            <app-chat-input
+            <lib-chat-input
                 class="chat-input"
                 (messageSent)="onSend($event)">
-            </app-chat-input>
+            </lib-chat-input>
          </div>
      }
 
@@ -61,10 +61,10 @@
     <div class="messages-list" #scrollContainer (scroll)="onScroll($event)">
         <div class="messages-list__inner">
             @for(message of messages(); track message!.createdAt) {
-                <app-message-bubble class="message-bubble" [message]="message"></app-message-bubble>
+                <lib-message-bubble class="message-bubble" [message]="message"></lib-message-bubble>
             }
             @if(streamedAssistantMessage()) {
-                <app-message-bubble class="message-bubble" [message]="streamedAssistantMessage()!"></app-message-bubble>
+                <lib-message-bubble class="message-bubble" [message]="streamedAssistantMessage()!"></lib-message-bubble>
             }
         </div>
     </div>

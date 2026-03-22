@@ -12,7 +12,7 @@ export enum ButtonSlideDirection {
 }
 
 @Component({
-  selector: 'app-button',
+  selector: 'lib-button',
   imports: [MatFabButton, MatIconModule, MatProgressSpinnerModule, CommonModule],
   templateUrl: './button.html',
   styleUrl: './button.scss',

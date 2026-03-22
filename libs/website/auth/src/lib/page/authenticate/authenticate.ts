@@ -20,7 +20,7 @@ interface Particle {
 }
 
 @Component({
-  selector: 'app-authenticate',
+  selector: 'lib-authenticate',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, Button],
   templateUrl: './authenticate.html',
