@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { UserHttpService } from '../http/user-http.service';
-import { SocketService } from '../core/socket.service';
+import { SocketService } from '../../../../../../libs/website/core/src/lib/socket.service';
 import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UserAction } from '../../state/user.action';

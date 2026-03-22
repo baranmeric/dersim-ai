@@ -13,7 +13,9 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@org/shared": ["libs/shared/src/index.ts"]
+      "@org/shared": ["libs/shared/src/index.ts"],
+      "@org/core": ["libs/website/core/src/index.ts"],
+      "@org/ui": ["libs/website/ui/src/index.ts"]
     }
   }
 }
