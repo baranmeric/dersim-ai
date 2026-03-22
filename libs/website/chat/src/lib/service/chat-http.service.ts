@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '@org/core';
+import { HttpService } from '@dersim/core';
 
 @Injectable({ providedIn: 'root' })
 export class ChatHttpService {

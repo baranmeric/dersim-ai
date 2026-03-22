@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AppError, AppErrorType } from '@org/shared';
+import { AppError, AppErrorType } from '@dersim/shared';
 
 export function errorInterceptor(
   req: HttpRequest<unknown>,

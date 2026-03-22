@@ -13,11 +13,11 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@org/shared": ["libs/shared/src/index.ts"],
-      "@org/core": ["libs/website/core/src/index.ts"],
-      "@org/ui": ["libs/website/ui/src/index.ts"],
-      "@org/auth": ["libs/website/auth/src/index.ts"],
-      "@org/chat": ["libs/website/chat/src/index.ts"]
+      "@dersim/shared": ["libs/shared/src/index.ts"],
+      "@dersim/core": ["libs/website/core/src/index.ts"],
+      "@dersim/ui": ["libs/website/ui/src/index.ts"],
+      "@dersim/auth": ["libs/website/auth/src/index.ts"],
+      "@dersim/chat": ["libs/website/chat/src/index.ts"]
     }
   }
 }

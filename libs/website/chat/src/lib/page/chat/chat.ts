@@ -8,12 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
-import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@org/shared';
-import { SocketService, LayoutService, SnackbarService } from '@org/core';
+import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@dersim/shared';
+import { SocketService, LayoutService, SnackbarService } from '@dersim/core';
 import {
   MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
-} from '@org/ui';
-import { UserService } from '@org/auth';
+} from '@dersim/ui';
+import { UserService } from '@dersim/auth';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';

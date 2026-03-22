@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppError, AppErrorType, utils } from '@org/shared';
-import { Button } from '@org/ui';
+import { AppError, AppErrorType, utils } from '@dersim/shared';
+import { Button } from '@dersim/ui';
 import { UserService } from '../../service/user.service';
 
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {

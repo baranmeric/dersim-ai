@@ -1,8 +1,8 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { Component, effect, inject, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ISessionListItem } from '@org/shared';
-import { AnimationService } from '@org/core';
+import { ISessionListItem } from '@dersim/shared';
+import { AnimationService } from '@dersim/core';
 
 @Component({
   selector: 'lib-session-chip',

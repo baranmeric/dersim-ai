@@ -4,14 +4,14 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('@org/chat').then(m => m.Chat),
+    loadComponent: () => import('@dersim/chat').then(m => m.Chat),
   },
   {
     path: 'authenticate',
-    loadComponent: () => import('@org/auth').then(m => m.Authenticate),
+    loadComponent: () => import('@dersim/auth').then(m => m.Authenticate),
   },
   {
     path: '**',
-    loadComponent: () => import('@org/chat').then(m => m.Chat),
+    loadComponent: () => import('@dersim/chat').then(m => m.Chat),
   },
 ];

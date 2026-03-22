@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { NotificationType, SessionNotification, ISessionListItem } from '@org/shared';
+import { NotificationType, SessionNotification, ISessionListItem } from '@dersim/shared';
 import { EnvironmentService } from './environment.service';
 
 @Injectable({ providedIn: 'root' })

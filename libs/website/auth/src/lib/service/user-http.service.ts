@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUserDto, IUserRequest } from '@org/shared';
-import { HttpService } from '@org/core';
+import { IUserDto, IUserRequest } from '@dersim/shared';
+import { HttpService } from '@dersim/core';
 
 @Injectable({ providedIn: 'root' })
 export class UserHttpService {

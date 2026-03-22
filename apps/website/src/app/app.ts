@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from '@org/auth';
+import { UserService } from '@dersim/auth';
 
 @Component({
   selector: 'app-root',

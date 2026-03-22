@@ -4,8 +4,8 @@ import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ENV_CONFIG, errorInterceptor } from '@org/core';
-import { userReducer } from '@org/auth';
+import { ENV_CONFIG, errorInterceptor } from '@dersim/core';
+import { userReducer } from '@dersim/auth';
 import { environment } from '../environment/environment.dev';
 import { routes } from './app.routes';
 

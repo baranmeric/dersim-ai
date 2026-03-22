@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IUserDto } from '@org/shared';
+import { IUserDto } from '@dersim/shared';
 
 export const UserAction = createActionGroup({
   source: 'User',

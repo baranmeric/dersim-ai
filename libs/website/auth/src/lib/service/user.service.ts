@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IUserRequest } from '@org/shared';
-import { SocketService } from '@org/core';
+import { IUserRequest } from '@dersim/shared';
+import { SocketService } from '@dersim/core';
 import { UserHttpService } from './user-http.service';
 import { UserAction } from '../state/user.action';
 

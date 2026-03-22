@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { IUserDto } from '@org/shared';
+import { IUserDto } from '@dersim/shared';
 import { UserAction } from './user.action';
 
 const initialState: Readonly<IUserDto | null> = null;
