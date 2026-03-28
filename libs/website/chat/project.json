@@ -4,7 +4,7 @@
   "sourceRoot": "libs/website/chat/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:website"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
