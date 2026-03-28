@@ -1,4 +1,4 @@
-import { IAppEnvironment } from '@dersim/core';
+import { IAppEnvironment } from '@dersim/website/core';
 
 export const environment: IAppEnvironment = {
   production: false,

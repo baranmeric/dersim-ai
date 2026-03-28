@@ -1,8 +1,8 @@
-import { CONTEXT_CONFIG, TAG, Logger, utils } from '@dersim/api-core';
+import { CONTEXT_CONFIG, TAG, Logger, utils } from '@dersim/api/core';
 import { MessageRole, IMessage } from '@dersim/shared';
 import SessionService from '../service/session.service';
 
-import { Ai } from '@dersim/api-core';
+import { Ai } from '@dersim/api/core';
 import type { ISession } from '../schema/session';
 
 class SessionGenerator {

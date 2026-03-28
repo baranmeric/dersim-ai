@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { connectDB, config, Logger, TAG, socketManager } from '@dersim/api-core';
+import { connectDB, config, Logger, TAG, socketManager } from '@dersim/api/core';
 import app from "./app";
 import { createServer } from 'http';
 

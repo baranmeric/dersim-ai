@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
 import { IDisplayMessage, MessageRole } from '@dersim/shared';
-import { AnimationService } from '@dersim/core';
+import { AnimationService } from '@dersim/website/core';
 
 @Component({
   selector: 'lib-message-bubble',

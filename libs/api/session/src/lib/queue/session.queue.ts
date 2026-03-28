@@ -1,4 +1,4 @@
-import { TAG, Logger, NotificationFactory, socketManager } from '@dersim/api-core';
+import { TAG, Logger, NotificationFactory, socketManager } from '@dersim/api/core';
 import { SessionTaskType } from '@dersim/shared';
 import { BaseQueue, IBaseTask, IBaseTaskParams, IQueueStats } from './base.queue';
 import SessionGenerator from '../generator/session.generator';

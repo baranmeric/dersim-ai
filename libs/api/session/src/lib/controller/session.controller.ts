@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import SessionService from '../service/session.service';
-import { Http } from '@dersim/api-cache';
+import { Http } from '@dersim/api/cache';
 
 const SessionController = {
     async createSession(req: Request, res: Response, next: NextFunction) {

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { config } from '@dersim/api-core';
+import { config } from '@dersim/api/core';
 import { IUser } from './schema/user';
 
 export const generateToken = (user: IUser): string => {

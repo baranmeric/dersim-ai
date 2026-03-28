@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validateRequest, authSchema } from '@dersim/api-core';
+import { validateRequest, authSchema } from '@dersim/api/core';
 import UserController from '../controller/user.controller';
 
 const router = Router();

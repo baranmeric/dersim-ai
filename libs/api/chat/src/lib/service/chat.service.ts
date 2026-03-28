@@ -1,8 +1,8 @@
 import { IMessage, MessageRole, AiError } from '@dersim/shared';
 import { Response } from "express";
-import SessionService, { QueueService } from '@dersim/api-session';
-import { Ai } from '@dersim/api-core';
-import type { ISession } from '@dersim/api-session';
+import SessionService, { QueueService } from '@dersim/api/session';
+import { Ai } from '@dersim/api/core';
+import type { ISession } from '@dersim/api/session';
 
 const ChatService = {
     // No Stream

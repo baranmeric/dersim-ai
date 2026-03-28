@@ -2,11 +2,11 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import { authenticate, errorHandler, notFoundHandler } from '@dersim/api-core';
-import { userRouter } from '@dersim/api-user';
-import { chatRouter } from '@dersim/api-chat';
-import { sessionRouter } from '@dersim/api-session';
-import { cacheRouter } from '@dersim/api-cache';
+import { authenticate, errorHandler, notFoundHandler } from '@dersim/api/core';
+import { userRouter } from '@dersim/api/user';
+import { chatRouter } from '@dersim/api/chat';
+import { sessionRouter } from '@dersim/api/session';
+import { cacheRouter } from '@dersim/api/cache';
 import { BaseRoute } from '@dersim/shared';
 
 const cookieParser = require('cookie-parser');

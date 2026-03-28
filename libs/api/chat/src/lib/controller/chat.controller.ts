@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Http } from '@dersim/api-cache';
+import { Http } from '@dersim/api/cache';
 import ChatService from '../service/chat.service';
 
 const validateRequest = (req: Request) => ({

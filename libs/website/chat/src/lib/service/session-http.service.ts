@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ISessionDto, ISessionListItem } from '@dersim/shared';
-import { HttpService } from '@dersim/core';
+import { HttpService } from '@dersim/website/core';
 
 @Injectable({ providedIn: 'root' })
 export class SessionHttpService {

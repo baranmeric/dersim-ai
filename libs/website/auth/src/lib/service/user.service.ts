@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IUserRequest } from '@dersim/shared';
-import { SocketService } from '@dersim/core';
-import { UserAction } from '@dersim/store';
+import { SocketService } from '@dersim/website/core';
+import { UserAction } from '@dersim/website/store';
 import { UserHttpService } from './user-http.service';
 
 @Injectable({ providedIn: 'root' })

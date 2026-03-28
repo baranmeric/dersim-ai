@@ -1,4 +1,4 @@
-import { TAG, Logger } from '@dersim/api-core';
+import { TAG, Logger } from '@dersim/api/core';
 import sessionService from '../service/session.service';
 import { ISession } from '../schema/session';
 

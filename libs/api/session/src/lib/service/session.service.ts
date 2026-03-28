@@ -1,4 +1,4 @@
-import { createServiceProxy } from '@dersim/api-core';
+import { createServiceProxy } from '@dersim/api/core';
 import { EntityNotFoundError, ForbiddenError, IMessage, IDisplayMessage, ISessionDto, ISessionListItem } from '@dersim/shared';
 import { ChatCompletion } from 'together-ai/resources/chat/completions';
 import Session, { ISession } from '../schema/session';

@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { finalize } from 'rxjs';
 import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@dersim/shared';
-import { UserAction } from '@dersim/store';
-import { SocketService, LayoutService, SnackbarService } from '@dersim/core';
+import { UserAction } from '@dersim/website/store';
+import { SocketService, LayoutService, SnackbarService } from '@dersim/website/core';
 import {
   MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
-} from '@dersim/ui';
+} from '@dersim/website/ui';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';

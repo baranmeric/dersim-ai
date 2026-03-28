@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Http } from '@dersim/api-cache';
+import { Http } from '@dersim/api/cache';
 import { InternalError, UnauthorizedError, IAuthData, IUserRequest } from '@dersim/shared';
 import UserService from '../service/user.service';
 

@@ -1,9 +1,9 @@
 import { Schema, Document, model } from 'mongoose';
 import { DisplayMessageSchema, MessageSchema } from './message';
-import { CONTEXT_CONFIG } from '@dersim/api-core';
+import { CONTEXT_CONFIG } from '@dersim/api/core';
 import { IContext, ISessionDto, ISessionListItem, SessionTaskType, IDisplayMessage } from '@dersim/shared';
 import generateMessagesHash from '../helper/messageHash';
-import { utils } from '@dersim/api-core';
+import { utils } from '@dersim/api/core';
 
 export interface ISession extends Document {
     id: string;

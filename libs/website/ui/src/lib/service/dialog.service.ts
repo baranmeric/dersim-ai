@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ComponentType } from '@angular/cdk/portal';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@dersim/core';
+import { LayoutService } from '@dersim/website/core';
 
 @Injectable({ providedIn: 'root' })
 export class DialogService {

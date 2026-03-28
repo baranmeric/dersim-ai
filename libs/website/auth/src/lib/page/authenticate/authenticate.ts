@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppError, AppErrorType, utils } from '@dersim/shared';
-import { Button } from '@dersim/ui';
+import { Button } from '@dersim/website/ui';
 import { UserService } from '../../service/user.service';
 
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {

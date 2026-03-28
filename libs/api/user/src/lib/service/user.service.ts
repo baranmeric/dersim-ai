@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { createServiceProxy } from '@dersim/api-core';
+import { createServiceProxy } from '@dersim/api/core';
 import { EntityNotFoundError, UnauthorizedError, ConflictError, IUserDto, IAuthData, IUserRequest } from '@dersim/shared';
 import User, { IUser } from '../schema/user';
 import { generateToken } from '../jwt';

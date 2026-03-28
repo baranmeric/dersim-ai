@@ -1,4 +1,4 @@
-import { redis, createServiceProxy } from '@dersim/api-core';
+import { redis, createServiceProxy } from '@dersim/api/core';
 
 export interface CacheOptions {
     key: string;

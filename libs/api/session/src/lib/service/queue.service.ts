@@ -1,5 +1,5 @@
 import { SessionTaskType } from '@dersim/shared';
-import { Logger, TAG, createServiceProxy } from '@dersim/api-core';
+import { Logger, TAG, createServiceProxy } from '@dersim/api/core';
 import SessionQueue, { ISessionTaskParams } from '../queue/session.queue';
 import { ISession } from '../schema/session';
 
