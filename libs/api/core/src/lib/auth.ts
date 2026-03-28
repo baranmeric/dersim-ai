@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from './jwt';
-import { isAdminRoute, isPublicRoute } from './routerConfig';
+import { isAdminRoute, isPublicRoute } from './config/routerConfig';
 import { ForbiddenError, UnauthorizedError } from '@dersim/shared';
 
 declare global {

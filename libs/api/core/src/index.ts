@@ -1,12 +1,12 @@
-export * from './lib/config.constants';
-export { default as config } from './lib/config';
+export * from './lib/config/aiConfig';
+export { default as config } from './lib/config/apiConfig';
 export * from './lib/logger';
 export * from './lib/utils';
 export * from './lib/serviceProxy';
 export { default as connectDB } from './lib/db';
 export { default as redis } from './lib/redis';
 export * from './lib/jwt';
-export * from './lib/routerConfig';
+export * from './lib/config/routerConfig';
 export * from './lib/validation';
 export * from './lib/auth';
 export * from './lib/socketManager';
