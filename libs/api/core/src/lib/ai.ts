@@ -9,7 +9,7 @@ export interface StreamResponse {
     onError: (error: AiError) => void;
 }
 
-const AiService = {
+const Ai = {
     async generateContent(messages: IMessage[]): Promise<string> {
         const completionMessages = this.getCompletionsMessages(messages);
         try {
@@ -49,4 +49,4 @@ const AiService = {
     },
 };
 
-export default AiService;
+export default Ai;

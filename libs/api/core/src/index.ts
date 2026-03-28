@@ -12,5 +12,5 @@ export * from './lib/auth';
 export * from './lib/socketManager';
 export * from './lib/notificationFactory';
 export * from './lib/errorHandler';
-export { default as AiService } from './lib/ai.service';
-export type { StreamResponse } from './lib/ai.service';
+export { default as Ai } from './lib/ai';
+export type { StreamResponse } from './lib/ai';

@@ -1,7 +1,7 @@
 import { IMessage, MessageRole, AiError } from '@dersim/shared';
 import { Response } from "express";
 import SessionService, { QueueService } from '@dersim/api-session';
-import { AiService } from '@dersim/api-core';
+import { Ai } from '@dersim/api-core';
 import type { ISession } from '@dersim/api-session';
 
 const ChatService = {
@@ -14,7 +14,7 @@ const ChatService = {
 
         // Generate AI response
         const conversationStack = this.buildConversationStack(session, userMessage);
-        const response = await AiService.generateContent(conversationStack);
+        const response = await Ai.generateContent(conversationStack);
         const aiMessage = this.createAssistantMessage(response);
 
         // Update session
@@ -39,7 +39,7 @@ const ChatService = {
         const conversationStack = this.buildConversationStack(session, userMessage);
         let aiResponse = '';
 
-        await AiService.streamContent(conversationStack, {
+        await Ai.streamContent(conversationStack, {
             onChunk: (chunk: string) => {
                 if (chunk) { res.write(chunk); aiResponse += chunk; }
             },
@@ -56,7 +56,7 @@ const ChatService = {
     },
 
     // Helper functions
-    
+
     createAssistantMessage(content: string): IMessage {
         return { role: MessageRole.ASSISTANT, content };
     },
