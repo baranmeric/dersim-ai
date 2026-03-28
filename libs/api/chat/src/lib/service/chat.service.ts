@@ -1,6 +1,7 @@
 import { IMessage, MessageRole, AiError } from '@dersim/shared';
 import { Response } from "express";
-import SessionService, { messageBuilder, AiService, QueueService } from '@dersim/api-session';
+import SessionService, { messageBuilder, QueueService } from '@dersim/api-session';
+import { AiService } from '@dersim/api-core';
 import type { ISession } from '@dersim/api-session';
 
 const ChatService = {
@@ -16,7 +17,7 @@ const ChatService = {
 
     async generateModelResponseMessage(session: ISession, activeQuery: IMessage): Promise<IMessage> {
         const conversationStack = await messageBuilder.buildConversationStack(session, activeQuery);
-        const response = await AiService.generateContent(conversationStack, session.id);
+        const response = await AiService.generateContent(conversationStack);
         return this.createAssistantMessage(response);
     },
 

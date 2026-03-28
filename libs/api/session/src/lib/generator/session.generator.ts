@@ -1,9 +1,9 @@
 import { CONTEXT_CONFIG, TAG, Logger, utils } from '@dersim/api-core';
 import { MessageRole, IMessage } from '@dersim/shared';
 import SessionService from '../service/session.service';
-import messageBuilder from '../helper/messageBuilder';
-import AiService from '../service/ai.service';
-import { ISession } from '../schema/session';
+
+import { AiService } from '@dersim/api-core';
+import type { ISession } from '../schema/session';
 
 class SessionGenerator {
     protected parseJsonMessage(jsonString: string): any {
@@ -30,8 +30,8 @@ class SessionGenerator {
             CONTEXT_CONFIG.CONDENSATION.TRIM_RATIO
         );
 
-        const prompt = messageBuilder.buildCondensationPrompt(oldMessages);
-        const response = await AiService.generateContent(prompt, session.id);
+        const prompt = this.buildCondensationPrompt(oldMessages);
+        const response = await AiService.generateContent(prompt);
         const jsonObject = this.parseJsonMessage(response);
         if (!jsonObject || !jsonObject.messages) return session;
 
@@ -57,14 +57,52 @@ class SessionGenerator {
 
     async generateSummary(session: ISession): Promise<ISession> {
         const messages = session.context.immediate;
-        const prompt = messageBuilder.buildSummarizationPrompt(messages);
-        const summary = await AiService.generateContent(prompt, session.id);
+        const prompt = this.buildSummarizationPrompt(messages);
+        const summary = await AiService.generateContent(prompt);
         try {
             return await SessionService.setSummary(session.id, summary);
         } catch (error) {
             Logger.error(TAG.GEN_SESSION, 'Failed to update session:', error);
             return session;
         }
+    }
+
+    private buildCondensationPrompt(messagesToCondense: IMessage[]): IMessage[] {
+        const messages = [...messagesToCondense];
+        messages.push({
+            role: MessageRole.USER,
+            content:
+                `Condense these conversation messages by 60-80% while preserving core meaning.
+
+                RULES:
+                - Keep only essential information and key points
+                - Remove redundant words and filler phrases
+                - Maintain emotional tone and therapeutic context
+                - Write in first person perspective
+                - Remove emojis
+
+                Return JSON:
+                {
+                  "messages": [
+                    {
+                        "role": "model" || "user",
+                        "text": "condensed message here"
+                    }
+                  ]
+                }`
+        });
+        return messages;
+    }
+
+    private buildSummarizationPrompt(messagesToSummarize: IMessage[]): IMessage[] {
+        const messages = [...messagesToSummarize];
+        messages.push({
+            role: MessageRole.SYSTEM,
+            content:
+                `Summarize this conversation in a single sentence (6 words max),
+                such that it can serve as a title for this conversation the user reads in a dashboard.`
+        });
+        return messages;
     }
 
     private getSplitMessages(messages: IMessage[], contextWindowCount: number, trimRatio: number): [IMessage[], IMessage[]] {

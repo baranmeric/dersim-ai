@@ -1,6 +1,5 @@
 import { AiError, IMessage } from '@dersim/shared';
 import Together from 'together-ai';
-import sessionService from './session.service';
 
 const together = new Together();
 
@@ -11,7 +10,7 @@ export interface StreamResponse {
 }
 
 const AiService = {
-    async generateContent(messages: IMessage[], sessionId?: string): Promise<string> {
+    async generateContent(messages: IMessage[]): Promise<string> {
         const completionMessages = this.getCompletionsMessages(messages);
         try {
             const response = await together.chat.completions.create({
@@ -20,7 +19,6 @@ const AiService = {
             });
             const responseContent = response.choices?.[0].message?.content;
             if (!responseContent) throw new AiError('Empty response');
-            if (sessionId) await sessionService.incrementUsage(sessionId, response);
             return responseContent;
         } catch (error: unknown) {
             throw new AiError('AI error', error);
@@ -41,7 +39,7 @@ const AiService = {
                 response.onChunk(content);
             }
             response.onDone();
-        } catch (error: any) {
+        } catch (error: unknown) {
             response.onError(new AiError('AI error', error));
         }
     },

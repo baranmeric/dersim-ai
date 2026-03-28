@@ -35,43 +35,6 @@ const MessageBuilder = {
         return messages;
     },
 
-    buildCondensationPrompt(messagesToCondense: IMessage[]): IMessage[] {
-        const messages = [...messagesToCondense];
-        messages.push({
-            role: MessageRole.USER,
-            content:
-                `Condense these conversation messages by 60-80% while preserving core meaning.
-
-                RULES:
-                - Keep only essential information and key points
-                - Remove redundant words and filler phrases
-                - Maintain emotional tone and therapeutic context
-                - Write in first person perspective
-                - Remove emojis
-
-                Return JSON:
-                {
-                  "messages": [
-                    {
-                        "role": "model" || "user",
-                        "text": "condensed message here"
-                    }
-                  ]
-                }`
-        });
-        return messages;
-    },
-
-    buildSummarizationPrompt(messagesToSummarize: IMessage[]): IMessage[] {
-        const messages = [...messagesToSummarize];
-        messages.push({
-            role: MessageRole.SYSTEM,
-            content:
-                `Summarize this conversation in a single sentence (6 words max),
-                such that it can serve as a title for this conversation the user reads in a dashboard.`
-        });
-        return messages;
-    },
 };
 
 export default MessageBuilder;
