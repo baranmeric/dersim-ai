@@ -2,11 +2,9 @@ import { createServiceProxy } from '@dersim/api-core';
 import { EntityNotFoundError, ForbiddenError, IMessage, IDisplayMessage, ISessionDto, ISessionListItem } from '@dersim/shared';
 import { ChatCompletion } from 'together-ai/resources/chat/completions';
 import Session, { ISession } from '../schema/session';
-import userService from '@dersim/api-user';
 
 const SessionService = {
     async createSession(userId: string): Promise<ISessionDto> {
-        await userService.getUserById(userId);
         const session = await Session.create({ userId });
         return session.toDto();
     },

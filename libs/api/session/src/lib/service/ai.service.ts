@@ -22,7 +22,7 @@ const AiService = {
             if (!responseContent) throw new AiError('Empty response');
             if (sessionId) await sessionService.incrementUsage(sessionId, response);
             return responseContent;
-        } catch (error: any) {
+        } catch (error: unknown) {
             throw new AiError('AI error', error);
         }
     },

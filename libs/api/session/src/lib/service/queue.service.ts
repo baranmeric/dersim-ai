@@ -15,7 +15,7 @@ const QueueService = {
             return;
         }
 
-        let params: ISessionTaskParams = {
+        const params: ISessionTaskParams = {
             userId: session.getUserId(),
             sessionId: session.id,
             type: SessionTaskType.CONDENSATION,
