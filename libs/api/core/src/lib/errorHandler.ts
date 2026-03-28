@@ -7,7 +7,6 @@ export const errorHandler = (
     err: Error,
     req: Request,
     res: Response,
-    next: NextFunction
 ) => {
     Logger.error(TAG.ERROR_HANDLER, err);
 
@@ -33,6 +32,6 @@ export const errorHandler = (
     res.status(statusCode).json(errorResponse);
 };
 
-export const notFoundHandler = (req: Request, res: Response, next: NextFunction): void => {
+export const notFoundHandler = (req: Request, res: Response): void => {
     res.status(HttpStatus.NOT_FOUND).json('Route does not exist');
 };

@@ -14,11 +14,9 @@ class SocketManager {
     private socketServer?: WebSocketServer;
     private clients: Map<string, WebSocket> = new Map();
 
-    constructor() { }
-
     upgrade(httpServer: HttpServer) {
         this.httpServer = httpServer;
-        this.httpServer.on('upgrade', (req: IncomingMessage, socket, head) => {
+        this.httpServer.on('upgrade', (req: IncomingMessage, socket) => {
             Logger.info(TAG.SYSTEM, `WebSocket upgraded and ready to connect`);
 
             try {

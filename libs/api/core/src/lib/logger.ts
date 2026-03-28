@@ -20,7 +20,7 @@ export enum TAG {
     CACHE = '[CACHE]',
 }
 
-const safeStringify = (obj: any, depth: number = 2): string => {
+const safeStringify = (obj: any, depth = 2): string => {
     try {
         return JSON.stringify(obj, null, depth);
     } catch (error) {
@@ -62,7 +62,7 @@ export const Logger = {
         console.log(chalk.green(TAG.TEST), ...formatLogData(data));
     },
 
-    object: (tag: TAG, obj: any, depth: number = 4) => {
+    object: (tag: TAG, obj: any, depth = 4) => {
         console.info(chalk.cyan(tag), safeStringify(obj, depth));
     }
 };

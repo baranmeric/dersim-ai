@@ -2,7 +2,7 @@ import { CONTEXT_CONFIG, TAG, Logger, utils } from '@dersim/api-core';
 import { MessageRole, IMessage } from '@dersim/shared';
 import SessionService from '../service/session.service';
 
-import { AiService } from '@dersim/api-core';
+import { Ai } from '@dersim/api-core';
 import type { ISession } from '../schema/session';
 
 class SessionGenerator {
@@ -31,7 +31,7 @@ class SessionGenerator {
         );
 
         const prompt = this.buildCondensationPrompt(oldMessages);
-        const response = await AiService.generateContent(prompt);
+        const response = await Ai.generateContent(prompt);
         const jsonObject = this.parseJsonMessage(response);
         if (!jsonObject || !jsonObject.messages) return session;
 
@@ -58,7 +58,7 @@ class SessionGenerator {
     async generateSummary(session: ISession): Promise<ISession> {
         const messages = session.context.immediate;
         const prompt = this.buildSummarizationPrompt(messages);
-        const summary = await AiService.generateContent(prompt);
+        const summary = await Ai.generateContent(prompt);
         try {
             return await SessionService.setSummary(session.id, summary);
         } catch (error) {

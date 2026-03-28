@@ -10,7 +10,7 @@ export interface ITokenPrice {
 }
 
 export const utils = {
-    estimateTokenCount(messages: IMessage[], charsPerToken: number = 3): number {
+    estimateTokenCount(messages: IMessage[]): number {
         if (!messages.length) return 0;
         const encoder = encoding_for_model("gpt-3.5-turbo");
         let count = 0;
@@ -24,7 +24,7 @@ export const utils = {
         return count;
     },
 
-    estimateTokenCost(input: number, output: number, inputPrice: number = 0.1, outputPrice: number = 0.4): ITokenPrice {
+    estimateTokenCost(input: number, output: number, inputPrice = 0.1, outputPrice = 0.4): ITokenPrice {
         const inputCost = input / 1000000 * inputPrice;
         const outputCost = output / 1000000 * outputPrice;
         return {

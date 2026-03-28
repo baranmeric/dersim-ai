@@ -5,7 +5,8 @@
   "scripts": {
     "start": "concurrently --names \"api,web\" --prefix-colors \"yellow,cyan\" \"nx serve api\" \"nx serve website\"",
     "start:website": "nx serve website",
-    "start:api": "nx serve api"
+    "start:api": "nx serve api",
+    "lint": "nx run-many -t lint all"
   },
   "private": true,
   "devDependencies": {
