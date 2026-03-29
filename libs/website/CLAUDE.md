@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Website Libraries
 
-Guidelines for working in this Angular codebase.
+Guidelines for working in `libs/website/*`. Angular ecosystem only.
 
 ---
 
@@ -13,6 +13,29 @@ Guidelines for working in this Angular codebase.
 - **RxJS 7** — async operations and streaming
 - **SCSS** — component and global styles with shared theme variables
 - **Vitest** — test runner
+
+---
+
+## Lib Folder Structure
+
+Feature libs (`auth`, `chat`, etc.) follow this folder structure inside `src/lib/`:
+
+```
+src/lib/
+  page/        ← routed page components
+  component/   ← dumb/presentational components (when they exist)
+  service/     ← services and http clients
+  state/       ← NgRx actions, reducers, selectors
+  guard/       ← route guards (when they exist)
+```
+
+Rules:
+- Only create a folder when there are actual files for it — no empty folders
+- Feature libs do not import other feature libs — cross-domain state goes through `@dersim/website/store`
+- Shared website libs:
+  - `core`: infrastructure services whose scope surpasses any domain (e.g. `HttpService`, `EnvironmentService`)
+  - `ui`: dumb components with no business logic (buttons, dialogs, etc.)
+  - `store`: NgRx app state and cross-domain store actions
 
 ---
 
@@ -33,8 +56,8 @@ Guidelines for working in this Angular codebase.
 ## Component Pattern
 
 All components are standalone. No NgModules.
-Variables and methods should have least possible access level, public does not have to be annotated
-sections seperated by comment like this:
+Variables and methods should have least possible access level, public does not have to be annotated.
+Sections separated by comment like this:
 
 // ── Signals ──────────────────────────────────────────────────────────────────────
 
@@ -71,13 +94,13 @@ export class FeatureNameComponent {
   // ── View References ────────────────────────────────────────────────────────────────
   private readonly containerRef = viewChild<ElementRef>('container');
 
-  // 5. Lifecycle methods & constructor (only if explicitly needed, no injection here)
+  // 6. Lifecycle methods & constructor (only if explicitly needed, no injection here)
   // ── Lifecycle ──────────────────────────────────────────────────────────────────────
   constructor {}
   ngOnInit() {}
   ngOnDestroy() {}
 
-  // 6. Getters and methods
+  // 7. Getters and methods
   // ── Methods ──────────────────────────────────────────────────────────────────────--
   private async getSessions(): Promise<void> {}
   protected get userData(): IUserData {}
@@ -167,7 +190,7 @@ Services are split into three layers. Each layer may only inject from its own la
 
 ## Error Handling
 
-- Use the custom `AppError` class from `shared/error/app.error.ts`
+- Use the custom `AppError` class from `@dersim/shared`
 - Use `AppErrorType` enum for typed error categories (UNAUTHORIZED, CONFLICT, VALIDATION, etc.)
 - Services throw typed errors; components catch and handle them
 
@@ -180,7 +203,7 @@ throw new AppError(AppErrorType.UNAUTHORIZED, 'Session expired');
 ## Styling
 
 - Each component has its own `.scss` file
-- Global theme variables live in `src/style/`
+- Global theme variables live in `apps/website/src/style/`
 - Import theme partials at the top of component stylesheets:
 
 ```scss
@@ -199,18 +222,7 @@ throw new AppError(AppErrorType.UNAUTHORIZED, 'Session expired');
 
 - All routes use `loadComponent()` for lazy loading
 - Route guards handle authentication via `canActivate`
-- Keep routes defined in `app.routes.ts`
-
----
-
-## Shared Code
-
-The `shared/` folder is framework-agnostic and can be used by both the frontend and any backend services. Keep it clean:
-
-- `shared/model/` — TypeScript interfaces only (prefixed with `I`, e.g. `IUserDto`)
-- `shared/enum/` — Enumerations
-- `shared/error/` — Error classes and error type enums
-- `shared/helper/` — Pure utility functions, no framework dependencies
+- Keep routes defined in `apps/website/src/app/app.routes.ts`
 
 ---
 
@@ -240,7 +252,7 @@ All strict flags are enabled. Additionally:
 - Never use constructor injection — use `inject()`
 - Never add `.component` to component file names
 - Avoid putting business logic in components — keep it in services
-- Avoid relying on lifecycle hooks (especially onChanges) and implement reactive changes with signals and observables
+- Avoid relying on lifecycle hooks (especially onChanges) — implement reactive changes with signals and observables
 - Never mutate signals directly — use `.set()` or `.update()`
 - Never import from Angular private APIs
 - Never disable strict TypeScript checks to silence errors — fix the type

@@ -22,47 +22,86 @@
 
 <!-- nx configuration end-->
 
-# API library Structure Convention for libs/api
+---
 
-Feature libs (`user`, `session`, `chat`, `cache`) follow this folder structure inside `src/lib/`:
+## Project-Wide Library Configuration
+
+### Scope Boundaries
+
+Enforced via `@nx/enforce-module-boundaries` in the root `eslint.config.mjs`:
+
+| Scope | May import from |
+|---|---|
+| `scope:shared` | `scope:shared` only |
+| `scope:api` | `scope:api`, `scope:shared` |
+| `scope:website` | `scope:website`, `scope:shared` |
+
+`scope:api` and `scope:website` are fully isolated from each other — neither can import from the other.
+
+### `libs/shared` — Framework-agnostic shared code
+
+- Tagged `scope:shared`
+- No Angular, no Express, no runtime framework dependencies
+- Contains only: TypeScript interfaces (`model/`), enumerations (`enum/`), pure utility functions (`helper/`), and error types (`error/`)
+- Safe to import in both the website and the API
+
+### `libs/api/*` — API-only libraries
+
+- Tagged `scope:api`
+- Exclusively consumed by `apps/api` — never imported by the website
+- Express/Node.js ecosystem only (Mongoose, Redis, JWT, etc.)
+- Feature libs: `core`, `user`, `session`, `chat`, `cache`
+
+### `libs/website/*` — Website-only libraries
+
+- Tagged `scope:website`
+- Exclusively consumed by `apps/website` — never imported by the API
+- Angular ecosystem only (Angular, Angular Material, NgRx, RxJS)
+- Shared website libs: `core` (infrastructure services), `ui` (dumb components), `store` (NgRx app state)
+- Feature libs: `auth`, `chat`
+
+### Path Aliases (`@dersim/`)
+
+All libs are imported via path aliases defined in `tsconfig.base.json`. Never use relative paths to cross lib boundaries.
+
+```typescript
+// Correct — use the path alias
+import { IUser } from '@dersim/shared';
+import { HttpService } from '@dersim/website/core';
+import { UserAction } from '@dersim/website/store';
+
+// Wrong — never cross lib boundaries with relative paths
+import { IUser } from '../../../libs/shared/src/model/user.model';
+```
+
+Available aliases:
 
 ```
-src/lib/
-  schema/      ← Mongoose models and document interfaces
-  service/     ← business logic services (wrapped with createServiceProxy)
-  controller/  ← Express request handlers
-  router/      ← Express routers
-  helper/      ← domain-specific pure helpers
-  queue/       ← background queue processors (when they exist)
-  generator/   ← AI content generators (when they exist)
+@dersim/shared             → libs/shared/src/index.ts
+@dersim/website/core       → libs/website/core/src/index.ts
+@dersim/website/ui         → libs/website/ui/src/index.ts
+@dersim/website/auth       → libs/website/auth/src/index.ts
+@dersim/website/chat       → libs/website/chat/src/index.ts
+@dersim/website/store      → libs/website/store/src/index.ts
 ```
 
-Rules:
-- `core/` is flat — logger, proxy, config, middleware, socket, error handler all at top level
-- Only create a folder when there are actual files for it — no empty folders
-- `config/` (db, redis, jwt verify) lives in `core/`
-- `generateToken` lives in `user/` since it depends on `IUser`
-- `http` response helper lives in `cache/` since it depends on `cacheService`
-- Lib dependency order: `core` → `user` → `session` → `chat`, `cache`
+Each lib exposes its public API exclusively through its `src/index.ts` barrel file. Only import what is exported from there — never reach into internal paths of another lib.
 
-# Website library Structure Convention for libs/website
+<!-- #suggestion
+The following are suggested additions worth reviewing:
 
-Feature libs (`auth`, `chat`, etc.) follow this folder structure inside `src/lib/`:
+1. **Type tags alongside scope tags** — consider adding `type:feature`, `type:ui`, `type:util`, `type:state` tags per lib in `project.json`.
+   This would allow finer-grained boundary rules (e.g. prevent feature libs from importing other feature libs directly, forcing communication through the store).
 
-```
-src/lib/
-  page/        ← routed page components
-  component/   ← dumb/presentational components (when they exist)
-  service/     ← services and http clients
-  state/        ← NgRx actions, reducers, selectors
-  guard/       ← route guards (when they exist)
-```
+2. **Lib-to-lib communication rule** — website feature libs (`auth`, `chat`) should not import each other.
+   Cross-domain state sharing must go through `@dersim/website/store`. This isn't enforced yet and could be added as a depConstraint.
 
-Rules:
-- Only create a folder when there are actual files for it — no empty folders
-- Libs do not import libs, only shared libs can be imported
-- Shared libs:
-  - `core`: contains core services whoms scopes surpasses any domain, like environment or http service
-  - `shared`: dumb components with no business logic, like buttons or simple dialogs
-  - `state`: defines app state via ngrx store and store actions for cross domain communication
+3. **`ui` lib import restriction** — `@dersim/website/ui` should only be importable from feature libs and the app, not from `core` or `store`.
+   A `type:ui` tag + constraint would enforce this and prevent accidental coupling of infrastructure to presentation.
 
+4. **Explicit `shared` lib sub-path exports** — as `libs/shared` grows, consider splitting it into `@dersim/shared/model`, `@dersim/shared/enum`, etc.
+   This makes tree-shaking more effective and makes import intent clearer at a glance.
+
+5. **Barrel file hygiene rule** — add a lint or CI check that flags direct internal imports like `@dersim/website/core/src/lib/http.service` (bypassing index.ts).
+   The `no-restricted-imports` ESLint rule or a custom Nx boundary rule could enforce this.
+-->
