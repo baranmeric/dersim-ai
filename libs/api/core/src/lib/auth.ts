@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from './jwt';
-import { isAdminRoute, isPublicRoute } from './config/routerConfig';
+import { isPublicRoute } from './config/routerConfig';
 import { ForbiddenError, UnauthorizedError } from '@dersim/shared';
 import config from './config/environmentConfig';
 
@@ -21,6 +21,14 @@ export const getUserIdFromToken = (token: string): string => {
     return decoded.id;
 };
 
+export const requireAdmin = (req: Request, _res: Response, next: NextFunction): void => {
+    if (req.userId !== 'admin') {
+        next(new ForbiddenError('Admin access required'));
+        return;
+    }
+    next();
+};
+
 export const authenticate = (req: Request, _res: Response, next: NextFunction): void => {
     if (isPublicRoute(req)) {
         next();
@@ -31,11 +39,6 @@ export const authenticate = (req: Request, _res: Response, next: NextFunction): 
         next();
         return;
     }
-    if (isAdminRoute(req)) {
-        next(new ForbiddenError('Unauthorized'));
-        return;
-    }
-
     const token = req.cookies.token;
     if (!token) {
         next(new UnauthorizedError('Authentication token is required'));

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validateRequest, authSchema } from '@dersim/api/core';
+import { validateRequest, authSchema, requireAdmin } from '@dersim/api/core';
 import UserController from '../controller/user.controller';
 
 const router = Router();
@@ -15,7 +15,7 @@ router.delete('/:id', UserController.deleteUser);
 router.post('/logout', UserController.logout);
 
 // Admin routes
-router.get('/all', UserController.getUsers);
-router.get('/:id', UserController.getUserById);
+router.get('/all', requireAdmin, UserController.getUsers);
+router.get('/:id', requireAdmin, UserController.getUserById);
 
 export default router;

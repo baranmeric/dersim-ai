@@ -2,7 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import { authenticate, errorHandler, notFoundHandler } from '@dersim/api/core';
+import { authenticate, errorHandler, notFoundHandler, config } from '@dersim/api/core';
 import { userRouter } from '@dersim/api/user';
 import { chatRouter } from '@dersim/api/chat';
 import { sessionRouter } from '@dersim/api/session';
@@ -51,7 +51,7 @@ app.use(helmet());
 app.use(cookieParser());
 
 const corsOptions: cors.CorsOptions = {
-    origin: ['http://localhost:4200', 'http://localhost:3000'],
+    origin: config.cors_origins,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Cache-Control'],
     exposedHeaders: ['Content-Type', 'Transfer-Encoding'],

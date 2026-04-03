@@ -1,18 +1,3 @@
-export const CHAT_CONFIG = {
-    DEEPSEEK: {
-        BASE_URL: 'https://api.deepseek.com',
-        MODEL: "deepseek-chat",
-        TEMPERATURE: 1.3,
-        MAX_TOKENS: 1024,
-    },
-    GEMINI: {
-        BASE_URL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
-        MODEL: "gemini-2.5-flash-lite-preview-06-17",
-        TEMPERATURE: 1.3,
-        MAX_TOKENS: 1024,
-    }
-};
-
 export const CONTEXT_CONFIG = {
     IMMEDIATE: {
         CONTEXT_WINDOW: 2048,
