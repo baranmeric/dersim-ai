@@ -9,7 +9,6 @@ const CacheController = {
     },
 
     async clearAll(req: Request, res: Response, next: NextFunction): Promise<void> {
-        await CacheService.clearAll();
         Http.respond(req, res, next, CacheService.clearAll());
     },
 
