@@ -1,5 +1,5 @@
 export * from './lib/config/aiConfig';
-export { default as config } from './lib/config/apiConfig';
+export { default as config } from './lib/config/environmentConfig';
 export * from './lib/logger';
 export * from './lib/utils';
 export * from './lib/serviceProxy';

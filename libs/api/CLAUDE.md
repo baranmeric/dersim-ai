@@ -12,7 +12,6 @@ Guidelines for working in `libs/api/*`. Express/Node.js ecosystem only.
 - **Mongoose** — MongoDB ODM
 - **Redis** — caching and session storage
 - **JWT** — authentication tokens
-- **BullMQ** — background job queues
 
 ---
 

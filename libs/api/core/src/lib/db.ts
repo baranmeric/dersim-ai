@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import config from './config/apiConfig';
+import config from './config/environmentConfig';
 import { Logger, TAG } from './logger';
 
 const connectDB = async (): Promise<void> => {

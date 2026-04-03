@@ -51,7 +51,7 @@ app.use(helmet());
 app.use(cookieParser());
 
 const corsOptions: cors.CorsOptions = {
-    origin: ['http://localhost:4200', 'http://localhost:3000', 'https://dersim-ai.vercel.app'],
+    origin: ['http://localhost:4200', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Cache-Control'],
     exposedHeaders: ['Content-Type', 'Transfer-Encoding'],

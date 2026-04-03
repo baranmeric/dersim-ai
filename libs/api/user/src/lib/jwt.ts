@@ -6,6 +6,6 @@ export const generateToken = (user: IUser): string => {
     return jwt.sign(
         { id: user._id, name: user.name },
         config.jwt_secret,
-        { expiresIn: '72000h' }
+        { expiresIn: '24h' }
     );
 };

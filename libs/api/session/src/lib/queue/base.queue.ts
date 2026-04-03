@@ -27,9 +27,9 @@ export interface IQueueStats {
 export abstract class BaseQueue<T extends IBaseTask> {
     protected TAG: string;
     protected queue: T[] = [];
-    protected isProcessing: boolean = false;
-    protected maxConcurrent: number = 100;
-    protected processingCount: number = 0;
+    protected isProcessing = false;
+    protected maxConcurrent = 100;
+    protected processingCount = 0;
     protected retryBuffer = 100;
     protected timeoutId: NodeJS.Timeout | null = null;
 
