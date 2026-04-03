@@ -15,8 +15,6 @@ out/
 .nx/polygraph/
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
-.claude/worktrees/
-.claude/settings.local.json
 
 # --- Environment & Secrets ---
 .env
@@ -24,7 +22,6 @@ out/
 .env.*.local
 
 # --- IDEs & Editors ---
-# General
 .idea/
 .project
 .classpath
@@ -36,13 +33,8 @@ out/
 *.swo
 *~
 *.code-workspace
-
-# VSCode (Keeping specific config files, ignoring the rest)
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/
+.claude/
 
 # --- Testing & Logs ---
 /coverage/
