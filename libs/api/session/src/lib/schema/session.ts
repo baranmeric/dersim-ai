@@ -75,6 +75,7 @@ SessionSchema.methods.getCurrentHash = function (): string {
 SessionSchema.methods.isReadyFor = function (taskType: SessionTaskType): boolean {
     switch (taskType) {
         case SessionTaskType.CONDENSATION: {
+            // TODO: Do not condensate messages for now. Find a fitting strategy here
             return false;
         }
         case SessionTaskType.SUMMARIZATION: {

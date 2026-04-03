@@ -43,8 +43,13 @@ const ChatService = {
             onChunk: (chunk: string) => {
                 if (chunk) { res.write(chunk); aiResponse += chunk; }
             },
-            onDone: () => { res.end(); },
-            onError: (error: AiError) => { throw error; }
+            onDone: () => { 
+                res.end(); 
+            },
+            onError: (error: AiError) => { 
+                res.end(); 
+                throw error; 
+            }
         });
 
         if (!aiResponse || aiResponse.length === 0) return;
