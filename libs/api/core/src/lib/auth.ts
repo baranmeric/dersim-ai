@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from './jwt';
 import { isAdminRoute, isPublicRoute } from './config/routerConfig';
 import { ForbiddenError, UnauthorizedError } from '@dersim/shared';
+import config from './config/environmentConfig';
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -20,12 +21,12 @@ export const getUserIdFromToken = (token: string): string => {
     return decoded.id;
 };
 
-export const authenticate = (req: Request, res: Response, next: NextFunction): void => {
+export const authenticate = (req: Request, _res: Response, next: NextFunction): void => {
     if (isPublicRoute(req)) {
         next();
         return;
     }
-    if (req.headers.authorization === 'Bearer admin') {
+    if (config.admin_secret && req.headers.authorization === `Bearer ${config.admin_secret}`) {
         req.userId = 'admin';
         next();
         return;
