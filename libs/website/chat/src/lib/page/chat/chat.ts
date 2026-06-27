@@ -1,23 +1,45 @@
 import {
-  Component, OnInit, ElementRef,
-  signal, computed, viewChild,
+  Component, 
+  OnInit, 
+  ElementRef,
+  signal, 
+  computed, 
+  viewChild,
   inject,
   Signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { 
+  MatDrawer, 
+  MatSidenavModule 
+} from '@angular/material/sidenav';
 import { finalize } from 'rxjs';
-import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } from '@dersim/shared';
+import { 
+  ISessionDto, 
+  ISessionListItem, 
+  IDisplayMessage, 
+  MessageRole, 
+  utils 
+} from '@dersim/shared';
 import { UserAction } from '@dersim/website/store';
-import { SocketService, LayoutService, SnackbarService } from '@dersim/website/core';
+import { 
+  SocketService, 
+  LayoutService, 
+  SnackbarService, 
+  UserService
+} from '@dersim/website/core';
 import {
-  SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
+  SidenavButton, 
+  SessionChip, 
+  ChatInputComponent, 
+  DialogService, 
+  SignOutDialog,
   MessageBubble,
 } from '@dersim/website/ui';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
+
 import { ChatHttpService } from '../../service/chat-http.service';
 import { SessionHttpService } from '../../service/session-http.service';
 
@@ -40,7 +62,7 @@ export class Chat implements OnInit {
   private readonly sessionService = inject(SessionHttpService);
   private readonly socketService = inject(SocketService);
   private readonly snackbarService = inject(SnackbarService);
-  private readonly store = inject(Store);
+  private readonly userService = inject(UserService);
 
   // ── Signals ──────────────────────────────────────────────────────────────────────
   protected isLoading = signal(false);
@@ -49,9 +71,12 @@ export class Chat implements OnInit {
   protected currentSession = signal<ISessionDto | null>(null);
   protected userScrolled = signal<boolean>(false);
   protected isMobile = this.layoutService.isMobile;
+
   private readonly sessions = signal<ISessionListItem[]>([]);
+
   private readonly socketSessionUpdate: Signal<ISessionListItem | null> =
     this.socketService.latestSessionUpdate;
+
   protected readonly displaySessions: Signal<ISessionListItem[]> = computed(() => {
     const update = this.socketSessionUpdate();
     if (!update) return this.sessions();
@@ -181,7 +206,7 @@ export class Chat implements OnInit {
   protected onLogout(): void {
     this.dialogService.open<SignOutDialog, boolean>(SignOutDialog).subscribe(confirmed => {
       if (confirmed) {
-        this.store.dispatch(UserAction.logout());
+        this.userService.logout();
       }
     });
   }

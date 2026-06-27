@@ -7,7 +7,6 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ENV_CONFIG, errorInterceptor } from '@dersim/website/core';
 import { userReducer } from '@dersim/website/store';
-import { UserEffect } from '@dersim/website/core';
 import { environment } from '../environment/environment.dev';
 import { routes } from './app.routes';
 
@@ -19,7 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideStore({ user: userReducer }),
-    provideEffects([UserEffect]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

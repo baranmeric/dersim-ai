@@ -6,6 +6,5 @@ export * from './lib/error.interceptor';
 export * from './lib/layout.service';
 export * from './lib/snackbar.service';
 export * from './lib/socket.service';
-export * from './lib/user.effect';
 export * from './lib/user.service';
 export * from './lib/user-http.service';

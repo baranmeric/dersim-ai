@@ -5,12 +5,14 @@ import { IUserRequest } from '@dersim/shared';
 import { SocketService } from './socket.service';
 import { UserAction } from '@dersim/website/store';
 import { UserHttpService } from './user-http.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly userHttpService = inject(UserHttpService);
   private readonly socketService = inject(SocketService);
   private readonly store = inject(Store);
+  private readonly router = inject(Router);
 
   async refreshUser(): Promise<void> {
     try {
@@ -38,5 +40,6 @@ export class UserService {
     await firstValueFrom(this.userHttpService.logout());
     this.socketService.disconnect();
     this.store.dispatch(UserAction.resetUser());
+    await this.router.navigate(['/authenticate']);
   }
 }
