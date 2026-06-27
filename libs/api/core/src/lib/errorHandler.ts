@@ -7,6 +7,7 @@ export const errorHandler = (
     err: Error,
     req: Request,
     res: Response,
+    _next: NextFunction,
 ) => {
     Logger.error(TAG.ERROR_HANDLER, err);
 
