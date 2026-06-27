@@ -6,3 +6,6 @@ export * from './lib/component/sidenav-button/sidenav-button';
 export * from './lib/component/base-dialog/base.dialog';
 export * from './lib/dialog/sign-out/sign-out.dialog';
 export * from './lib/service/dialog.service';
+export * from './lib/service/animation.service';
+export * from './lib/service/layout.service';
+export * from './lib/service/snackbar.service';

@@ -24,20 +24,16 @@ import {
   MessageRole, 
   utils 
 } from '@dersim/shared';
-import { UserAction } from '@dersim/website/store';
-import { 
-  SocketService, 
-  LayoutService, 
-  SnackbarService, 
-  UserService
-} from '@dersim/website/core';
+import { SocketService, UserService } from '@dersim/website/core';
 import {
-  SidenavButton, 
-  SessionChip, 
-  ChatInputComponent, 
-  DialogService, 
+  SidenavButton,
+  SessionChip,
+  ChatInputComponent,
+  DialogService,
   SignOutDialog,
   MessageBubble,
+  LayoutService,
+  SnackbarService,
 } from '@dersim/website/ui';
 
 import { ChatHttpService } from '../../service/chat-http.service';

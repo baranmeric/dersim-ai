@@ -6,6 +6,5 @@ export const UserAction = createActionGroup({
   events: {
     setUser: props<{ user: IUserDto }>(),
     resetUser: emptyProps(),
-    logout: emptyProps(),
   },
 });
