@@ -1,7 +1,7 @@
 import { HttpClient, HttpDownloadProgressEvent, HttpEventType } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { distinctUntilChanged, filter, map, Observable } from 'rxjs';
-import { EnvironmentService } from './environment.service';
+import { EnvironmentService } from '../environment/environment.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class HttpService {
 
   private createUrl(paths: Array<string>): string {
     let fullPath = '';
-    for (let path of paths) {
+    for (const path of paths) {
       fullPath += `/${path}`;
     }
     return `${this.API_URL}${fullPath}`;

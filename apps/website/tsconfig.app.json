@@ -11,7 +11,7 @@
     "../../libs/website/core/src/lib/layout.service.ts",
     "../../libs/website/core/src/lib/snackbar.service.ts",
     "../../libs/website/core/src/lib/socket.service.ts"
-  ],
+, "../../libs/website/core/src/lib/environment/app-environment.ts", "../../libs/website/core/src/lib/environment/environment.service.ts"  ],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     {
