@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap } from 'rxjs';
 import { UserAction } from '@dersim/website/store';
-import { UserService } from '../service/user.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class UserEffect {

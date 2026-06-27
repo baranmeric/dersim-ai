@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IUserRequest } from '@dersim/shared';
-import { SocketService } from '@dersim/website/core';
+import { SocketService } from './socket.service';
 import { UserAction } from '@dersim/website/store';
 import { UserHttpService } from './user-http.service';
 

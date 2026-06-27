@@ -7,7 +7,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ENV_CONFIG, errorInterceptor } from '@dersim/website/core';
 import { userReducer } from '@dersim/website/store';
-import { UserEffect } from '@dersim/website/auth';
+import { UserEffect } from '@dersim/website/core';
 import { environment } from '../environment/environment.dev';
 import { routes } from './app.routes';
 

@@ -12,7 +12,8 @@ import { ISessionDto, ISessionListItem, IDisplayMessage, MessageRole, utils } fr
 import { UserAction } from '@dersim/website/store';
 import { SocketService, LayoutService, SnackbarService } from '@dersim/website/core';
 import {
-  MessageBubble, SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
+  SidenavButton, SessionChip, ChatInputComponent, DialogService, SignOutDialog,
+  MessageBubble,
 } from '@dersim/website/ui';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
